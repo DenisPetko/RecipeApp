@@ -10,16 +10,16 @@ import java.util.Map;
 public class RecipeServiceImpl implements RecipeService {
 
     private static Map<Integer, Recipe> recipeMap;
+    private static int recipeID = 0;
 
 
     @Override
-    public void addRecipe() {
-        recipeMap.put(recipeID, new Recipe());
-        recipeID++;
+    public void addRecipe(Recipe recipe) {
+        recipeMap.put(recipeID++, recipe);
     }
 
     @Override
     public Recipe getRecipe(int recipeID) {
-        return null;
+        return recipeMap.get(recipeID);
     }
 }
