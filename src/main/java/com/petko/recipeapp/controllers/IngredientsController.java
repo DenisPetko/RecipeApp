@@ -1,28 +1,27 @@
 package com.petko.recipeapp.controllers;
 
+import com.petko.recipeapp.model.Ingredients;
 import com.petko.recipeapp.services.IngredientsService;
-import com.petko.recipeapp.model.Recipe;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/ingredients")
 public class IngredientsController {
 
-    private IngredientsService ingredientsService;
+    private final IngredientsService ingredientsService;
 
     public IngredientsController(IngredientsService ingredientsService) {
         this.ingredientsService = ingredientsService;
     }
 
-    @GetMapping
-    public void addIngredient() {
-
+    @PostMapping
+    public ResponseEntity<Ingredients> addIngredient(@RequestBody Ingredients ingredients) {
+        return ResponseEntity.ok(ingredientsService.addIngredient(ingredients));
     }
 
-    @GetMapping
-    public Recipe getIngredient() {
-        return null;
+    @GetMapping("/{id}")
+    public ResponseEntity<Ingredients> getIngredientByID(@PathVariable Long id) {
+        return ResponseEntity.of(ingredientsService.getIngredientByID(id));
     }
 }

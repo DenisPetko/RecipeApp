@@ -2,10 +2,15 @@ package com.petko.recipeapp.services;
 
 import com.petko.recipeapp.model.Recipe;
 
+import java.util.Optional;
+
+/**
+ * Сервис по работе с рецептами
+ */
 public interface RecipeService {
 
-    void addRecipe(Recipe recipe);
+    Recipe addRecipe(Recipe recipe);
 
-    Recipe getRecipe(int recipeID);
+    Optional<Recipe> getRecipeByID(Long id);
 
 }
