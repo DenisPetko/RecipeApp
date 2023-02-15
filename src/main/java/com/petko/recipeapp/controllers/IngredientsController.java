@@ -50,10 +50,6 @@ public class IngredientsController {
                     description = "Ингредиент найден"
             ),
             @ApiResponse(
-                    responseCode = "400",
-                    description = "Bad Request/обнаружена ошибка в синтаксисе запроса"
-            ),
-            @ApiResponse(
                     responseCode = "404",
                     description = "Not Found/запрашиваемой страницы нет"
             )
@@ -91,15 +87,7 @@ public class IngredientsController {
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "200",
-                    description = "Рецепт найден"
-            ),
-            @ApiResponse(
-                    responseCode = "400",
-                    description = "Bad Request/обнаружена ошибка в синтаксисе запроса"
-            ),
-            @ApiResponse(
-                    responseCode = "404",
-                    description = "Not Found/запрашиваемой страницы нет"
+                    description = "Ингредиент удален"
             )
     })
     public ResponseEntity<Ingredients> delete(@PathVariable Long id) {
@@ -113,15 +101,7 @@ public class IngredientsController {
     @ApiResponses(value = {
             @ApiResponse(
                     responseCode = "200",
-                    description = "Рецепт найден"
-            ),
-            @ApiResponse(
-                    responseCode = "400",
-                    description = "Bad Request/обнаружена ошибка в синтаксисе запроса"
-            ),
-            @ApiResponse(
-                    responseCode = "404",
-                    description = "Not Found/запрашиваемой страницы нет"
+                    description = "Ингредиенты найдены"
             )
     })
     public ResponseEntity<Map<Long, Ingredients>> getAll() {

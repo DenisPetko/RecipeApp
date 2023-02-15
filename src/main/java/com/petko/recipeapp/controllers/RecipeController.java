@@ -51,10 +51,6 @@ public class RecipeController {
                     description = "Рецепт найден"
             ),
             @ApiResponse(
-                    responseCode = "400",
-                    description = "Bad Request/обнаружена ошибка в синтаксисе запроса"
-            ),
-            @ApiResponse(
                     responseCode = "404",
                     description = "Not Found/запрашиваемой страницы нет"
             )
@@ -93,14 +89,6 @@ public class RecipeController {
             @ApiResponse(
                     responseCode = "200",
                     description = "Рецепт удален"
-            ),
-            @ApiResponse(
-                    responseCode = "400",
-                    description = "Bad Request/обнаружена ошибка в синтаксисе запроса"
-            ),
-            @ApiResponse(
-                    responseCode = "404",
-                    description = "Not Found/запрашиваемой страницы нет"
             )
 
     })
@@ -116,14 +104,6 @@ public class RecipeController {
             @ApiResponse(
                     responseCode = "200",
                     description = "Получены все рецепты "
-            ),
-            @ApiResponse(
-                    responseCode = "400",
-                    description = "Bad Request/обнаружена ошибка в синтаксисе запроса"
-            ),
-            @ApiResponse(
-                    responseCode = "404",
-                    description = "Not Found/запрашиваемой страницы нет"
             )
     })
     public ResponseEntity<Map<Long, Recipe>> getAll() {
