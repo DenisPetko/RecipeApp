@@ -59,9 +59,10 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
-    public void delete(Long id) {
+    public Recipe delete(Long id) {
         recipeMap.remove(id);
         saveToFile();
+        return null;
     }
 
     @Override

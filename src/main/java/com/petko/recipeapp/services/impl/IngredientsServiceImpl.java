@@ -59,9 +59,10 @@ public class IngredientsServiceImpl implements IngredientsService {
     }
 
     @Override
-    public void delete(Long id) {
+    public Ingredients delete(Long id) {
         ingredientsMap.remove(id);
         saveToFile();
+        return null;
     }
 
     @Override

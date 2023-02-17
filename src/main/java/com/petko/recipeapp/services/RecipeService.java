@@ -16,7 +16,7 @@ public interface RecipeService {
 
     Recipe update(Long id, Recipe recipe);
 
-    void delete(Long id);
+    Recipe delete(Long id);
 
     Map<Long, Recipe> getAll();
 }

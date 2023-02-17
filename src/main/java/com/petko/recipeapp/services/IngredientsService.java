@@ -17,7 +17,7 @@ public interface IngredientsService {
 
     Ingredients update(Long id, Ingredients ingredients);
 
-    void delete(Long id);
+    Ingredients delete(Long id);
 
     Map<Long, Ingredients> getAll();
 }
