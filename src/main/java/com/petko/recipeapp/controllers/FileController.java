@@ -41,8 +41,8 @@ public class FileController {
                     description = "Файл сохранен"
             ),
             @ApiResponse(
-                    responseCode = "500",
-                    description = "Сервер столкнулся с неожиданной ошибкой, которая помешала ему выполнить запрос"
+                    responseCode = "204",
+                    description = "Файл пустой"
             )
     })
     public ResponseEntity<InputStreamResource> downloadFileRecipes() throws FileNotFoundException {
@@ -69,8 +69,8 @@ public class FileController {
                     description = "Файл сохранен"
             ),
             @ApiResponse(
-                    responseCode = "500",
-                    description = "Сервер столкнулся с неожиданной ошибкой, которая помешала ему выполнить запрос"
+                    responseCode = "204",
+                    description = "Файл пустой"
             )
     })
     public ResponseEntity<InputStreamResource> downloadFileIngredients() throws FileNotFoundException {
