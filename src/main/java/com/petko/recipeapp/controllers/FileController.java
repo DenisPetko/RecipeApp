@@ -41,8 +41,8 @@ public class FileController {
                     description = "Файл сохранен"
             ),
             @ApiResponse(
-                    responseCode = "500",
-                    description = "Сервер столкнулся с неожиданной ошибкой, которая помешала ему выполнить запрос"
+                    responseCode = "204",
+                    description = "Файл пустой"
             )
     })
     public ResponseEntity<InputStreamResource> downloadFileRecipes() throws FileNotFoundException {
@@ -69,8 +69,8 @@ public class FileController {
                     description = "Файл сохранен"
             ),
             @ApiResponse(
-                    responseCode = "500",
-                    description = "Сервер столкнулся с неожиданной ошибкой, которая помешала ему выполнить запрос"
+                    responseCode = "204",
+                    description = "Файл пустой"
             )
     })
     public ResponseEntity<InputStreamResource> downloadFileIngredients() throws FileNotFoundException {
@@ -101,7 +101,7 @@ public class FileController {
                     description = "Сервер столкнулся с неожиданной ошибкой, которая помешала ему выполнить запрос"
             )
     })
-    public ResponseEntity<Void> uploadFileRecipe(@RequestParam MultipartFile file) {
+    public ResponseEntity<Void> uploadFileRecipes(@RequestParam MultipartFile file) {
         recipeFileService.cleanDataFile();
         File recipeDataFile = recipeFileService.getDataFile();
         try (FileOutputStream fos = new FileOutputStream(recipeDataFile)) {
@@ -127,7 +127,7 @@ public class FileController {
                     description = "Сервер столкнулся с неожиданной ошибкой, которая помешала ему выполнить запрос"
             )
     })
-    public ResponseEntity<Void> uploadFileIngredient(@RequestParam MultipartFile file) {
+    public ResponseEntity<Void> uploadFileIngredients(@RequestParam MultipartFile file) {
         ingredientFileService.cleanDataFile();
         File ingredientDataFile = ingredientFileService.getDataFile();
         try (FileOutputStream fos = new FileOutputStream(ingredientDataFile)) {
