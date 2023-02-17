@@ -108,3 +108,5 @@ public class IngredientsController {
         return ResponseEntity.ok(ingredientsService.getAll());
     }
 }
+
+
