@@ -33,8 +33,9 @@ public class RecipeFileServiceImpl implements RecipeFileService {
         try {
             return Files.readString(Path.of(dataFilePath, dataFileName));
         } catch (IOException e) {
-            throw new RuntimeException(e);
+             e.printStackTrace();
         }
+        return String.valueOf(new Exception()); // ТАК МОЖНО ?
     }
 
     private boolean cleanDataFile() {

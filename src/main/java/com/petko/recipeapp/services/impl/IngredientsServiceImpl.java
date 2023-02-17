@@ -53,13 +53,15 @@ public class IngredientsServiceImpl implements IngredientsService {
         if (!validationService.validate(ingredients)) {
             throw new ValidationException(ingredients.toString());
         }
+        ingredientsMap.replace(id, ingredients);
         saveToFile();
-        return ingredientsMap.replace(id, ingredients);
+        return ingredients;
     }
 
     @Override
-    public Ingredients delete(Long id) {
-        return ingredientsMap.remove(id);
+    public void delete(Long id) {
+        ingredientsMap.remove(id);
+        saveToFile();
     }
 
     @Override
@@ -72,7 +74,7 @@ public class IngredientsServiceImpl implements IngredientsService {
             String json = new ObjectMapper().writeValueAsString(ingredientsMap);
             ingredientFileService.saveToFile(json);
         } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 
@@ -82,7 +84,7 @@ public class IngredientsServiceImpl implements IngredientsService {
             ingredientsMap = new ObjectMapper().readValue(json, new TypeReference<HashMap<Long, Ingredients>>() {
             });
         } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 

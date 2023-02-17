@@ -32,8 +32,9 @@ public class IngredientFileServiceImpl implements IngredientFileService {
         try {
             return Files.readString(Path.of(dataFilePath, dataFileName));
         } catch (IOException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
+        return String.valueOf(new Exception()); // ТАК МОЖНО ?
     }
 
     private boolean cleanDataFile() {
@@ -43,6 +44,7 @@ public class IngredientFileServiceImpl implements IngredientFileService {
             Files.createFile(path);
             return true;
         } catch (IOException e) {
+            e.printStackTrace();
             return false;
         }
     }

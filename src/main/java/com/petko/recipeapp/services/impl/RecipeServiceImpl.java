@@ -53,13 +53,15 @@ public class RecipeServiceImpl implements RecipeService {
         if (!validationService.validate(recipe)) {
             throw new ValidationException(recipe.toString());
         }
+        recipeMap.replace(id, recipe);
         saveToFile();
-        return recipeMap.replace(id, recipe);
+        return recipe;
     }
 
     @Override
-    public Recipe delete(Long id) {
-        return recipeMap.remove(id);
+    public void delete(Long id) {
+        recipeMap.remove(id);
+        saveToFile();
     }
 
     @Override
@@ -72,7 +74,7 @@ public class RecipeServiceImpl implements RecipeService {
             String json = new ObjectMapper().writeValueAsString(recipeMap);
             recipeFileService.saveToFile(json);
         } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 
@@ -82,7 +84,7 @@ public class RecipeServiceImpl implements RecipeService {
             recipeMap = new ObjectMapper().readValue(json, new TypeReference<HashMap<Long, Recipe>>() {
             });
         } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+            e.printStackTrace();
         }
     }
 }
