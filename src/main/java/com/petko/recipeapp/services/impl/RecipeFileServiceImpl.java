@@ -35,7 +35,7 @@ public class RecipeFileServiceImpl implements RecipeFileService {
         } catch (IOException e) {
              e.printStackTrace();
         }
-        return String.valueOf(new Exception()); // ТАК МОЖНО ?
+        return null;
     }
 
     private boolean cleanDataFile() {

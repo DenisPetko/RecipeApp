@@ -80,8 +80,8 @@ public class IngredientsServiceImpl implements IngredientsService {
     }
 
     private void readFromFile() {
-        String json = ingredientFileService.readFromFile();
         try {
+            String json = ingredientFileService.readFromFile();
             ingredientsMap = new ObjectMapper().readValue(json, new TypeReference<HashMap<Long, Ingredients>>() {
             });
         } catch (JsonProcessingException e) {

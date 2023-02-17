@@ -11,6 +11,7 @@ import com.petko.recipeapp.services.ValidationService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -70,6 +71,11 @@ public class RecipeServiceImpl implements RecipeService {
         return recipeMap;
     }
 
+    @Override
+    public File readFile() {
+        return null;
+    }
+
     private void saveToFile() {
         try {
             String json = new ObjectMapper().writeValueAsString(recipeMap);
@@ -80,8 +86,8 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     private void readFromFile() {
-        String json = recipeFileService.readFromFile();
         try {
+            String json = recipeFileService.readFromFile();
             recipeMap = new ObjectMapper().readValue(json, new TypeReference<HashMap<Long, Recipe>>() {
             });
         } catch (JsonProcessingException e) {
