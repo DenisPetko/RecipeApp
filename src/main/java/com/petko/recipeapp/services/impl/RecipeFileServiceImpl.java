@@ -19,6 +19,15 @@ public class RecipeFileServiceImpl implements RecipeFileService {
     private String dataFileName;
 
     @Override
+    public Path createTempRecipeFile(String suffix) {
+        try {
+           return Files.createTempFile(Path.of(dataFilePath), "tempFile", suffix);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @Override
     public boolean saveToFile(String json) {
         try {
             cleanDataFile();

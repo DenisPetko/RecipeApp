@@ -11,6 +11,11 @@ import com.petko.recipeapp.services.ValidationService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.io.IOException;
+import java.io.Writer;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardOpenOption;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -70,6 +75,19 @@ public class RecipeServiceImpl implements RecipeService {
         return recipeMap;
     }
 
+    @Override
+    public Path createRecipeFile() throws IOException {
+        Path path = recipeFileService.createTempRecipeFile("recipeFile");
+        for (Recipe recipe : recipeMap.values()) {
+            try (Writer writer = Files.newBufferedWriter(path, StandardOpenOption.APPEND)) {
+                writer.append(recipe.getTitle()).append("\n")
+                        .append("Время приготовления: ").append(String.valueOf(recipe.getCookingTime())).append("\n")
+                        .append("Ингредиенты: ").append("\n").append(recipe.getIngredients().toString()).append("\n")
+                        .append("Инструкция приготовления: ").append(recipe.getStepsCooking().toString());
+            }
+        }
+        return path;
+    }
 
     private void saveToFile() {
         try {
