@@ -9,4 +9,7 @@ public interface IngredientFileService {
     String readFromFile();
 
     File getDataFile();
+
+    boolean cleanDataFile();
 }
+
