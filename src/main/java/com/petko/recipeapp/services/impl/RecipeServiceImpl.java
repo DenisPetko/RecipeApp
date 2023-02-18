@@ -81,6 +81,7 @@ public class RecipeServiceImpl implements RecipeService {
         Path path = recipeFileService.createTempRecipeFile("recipeFile");
             try (Writer writer = Files.newBufferedWriter(path, StandardOpenOption.APPEND)) {
                 for (Recipe recipe : recipeMap.values()){
+
                 writer.append(recipe.getTitle()).append("\n")
                         .append("Время приготовления: ").append(String.valueOf(recipe.getCookingTime())).append("\n")
                         .append("Ингредиенты: ").append("\n").append(recipe.getIngredients().toString()).append("\n")
