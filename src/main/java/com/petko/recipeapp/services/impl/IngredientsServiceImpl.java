@@ -22,6 +22,7 @@ public class IngredientsServiceImpl implements IngredientsService {
     private static long ingredientID = 0;
     private Map<Long, Ingredients> ingredientsMap = new HashMap<>();
     private final ValidationService validationService;
+    private ObjectMapper objectMapper;
 
     public IngredientsServiceImpl(IngredientFileService ingredientFileService, ValidationService validationService) {
         this.ingredientFileService = ingredientFileService;
@@ -72,7 +73,7 @@ public class IngredientsServiceImpl implements IngredientsService {
 
     private void saveToFile() {
         try {
-            String json = new ObjectMapper().writeValueAsString(ingredientsMap);
+            String json = objectMapper.writeValueAsString(ingredientsMap);
             ingredientFileService.saveToFile(json);
         } catch (JsonProcessingException e) {
             e.printStackTrace();
@@ -82,7 +83,7 @@ public class IngredientsServiceImpl implements IngredientsService {
     private void readFromFile() {
         try {
             String json = ingredientFileService.readFromFile();
-            ingredientsMap = new ObjectMapper().readValue(json, new TypeReference<HashMap<Long, Ingredients>>() {
+            ingredientsMap = objectMapper.readValue(json, new TypeReference<HashMap<Long, Ingredients>>() {
             });
         } catch (JsonProcessingException e) {
             e.printStackTrace();

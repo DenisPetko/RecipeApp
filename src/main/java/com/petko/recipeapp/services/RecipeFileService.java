@@ -12,4 +12,6 @@ public interface RecipeFileService {
     String readFromFile();
 
     File getDataFile();
+
+    boolean cleanDataFile();
 }

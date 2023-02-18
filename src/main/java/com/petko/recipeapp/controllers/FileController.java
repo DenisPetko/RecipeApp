@@ -1,7 +1,7 @@
 package com.petko.recipeapp.controllers;
 
-import com.petko.recipeapp.services.impl.IngredientFileServiceImpl;
-import com.petko.recipeapp.services.impl.RecipeFileServiceImpl;
+import com.petko.recipeapp.services.IngredientFileService;
+import com.petko.recipeapp.services.RecipeFileService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -22,11 +22,11 @@ import java.io.*;
 @Tag(name = "API для работы с файлами", description = "Импорт и экспорт файлов")
 public class FileController {
 
-    private final RecipeFileServiceImpl recipeFileService;
-    private final IngredientFileServiceImpl ingredientFileService;
+    private final RecipeFileService recipeFileService;
+    private final IngredientFileService ingredientFileService;
 
 
-    public FileController(RecipeFileServiceImpl recipeFileService, IngredientFileServiceImpl ingredientFileService) {
+    public FileController(RecipeFileService recipeFileService, IngredientFileService ingredientFileService) {
         this.recipeFileService = recipeFileService;
         this.ingredientFileService = ingredientFileService;
     }
