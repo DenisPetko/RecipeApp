@@ -13,7 +13,7 @@ public interface RecipeFileService {
 
     boolean saveToFile(String json);
 
-    String readFromFile();
+    String readFromFile(MultipartFile file);
 
     File getDataFile();
 

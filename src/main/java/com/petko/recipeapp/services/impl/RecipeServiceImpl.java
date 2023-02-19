@@ -9,6 +9,7 @@ import com.petko.recipeapp.services.RecipeFileService;
 import com.petko.recipeapp.services.RecipeService;
 import com.petko.recipeapp.services.ValidationService;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
@@ -100,9 +101,9 @@ public class RecipeServiceImpl implements RecipeService {
         }
     }
 
-    private void readFromFile() {
+    private void readFromFile(MultipartFile file) {
         try {
-            String json = recipeFileService.readFromFile();
+            String json = recipeFileService.readFromFile(file);
             recipeMap = objectMapper.readValue(json, new TypeReference<HashMap<Long, Recipe>>() {
             });
         } catch (JsonProcessingException e) {

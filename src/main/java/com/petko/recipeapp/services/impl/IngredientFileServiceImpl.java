@@ -37,7 +37,7 @@ public class IngredientFileServiceImpl implements IngredientFileService {
     }
 
     @Override
-    public String readFromFile() {
+    public String readFromFile(MultipartFile file) {
         ingredientFileService.cleanDataFile();
         File ingredientDataFile = ingredientFileService.getDataFile();
         try {

@@ -9,6 +9,7 @@ import com.petko.recipeapp.services.IngredientFileService;
 import com.petko.recipeapp.services.IngredientsService;
 import com.petko.recipeapp.services.ValidationService;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.PostConstruct;
 import java.util.HashMap;
@@ -80,9 +81,9 @@ public class IngredientsServiceImpl implements IngredientsService {
         }
     }
 
-    private void readFromFile() {
+    private void readFromFile(MultipartFile file) {
         try {
-            String json = ingredientFileService.readFromFile();
+            String json = ingredientFileService.readFromFile(file);
             ingredientsMap = objectMapper.readValue(json, new TypeReference<HashMap<Long, Ingredients>>() {
             });
         } catch (JsonProcessingException e) {
