@@ -1,16 +1,24 @@
 package com.petko.recipeapp.services.impl;
 
 import com.petko.recipeapp.services.IngredientFileService;
+import lombok.RequiredArgsConstructor;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
 @Service
+@RequiredArgsConstructor
 public class IngredientFileServiceImpl implements IngredientFileService {
+
+    private final IngredientFileService ingredientFileService;
+
     @Value("${path.to.data.file}")
     private String dataFilePath;
 
@@ -30,7 +38,11 @@ public class IngredientFileServiceImpl implements IngredientFileService {
 
     @Override
     public String readFromFile() {
+        ingredientFileService.cleanDataFile();
+        File ingredientDataFile = ingredientFileService.getDataFile();
         try {
+            FileOutputStream fos = new FileOutputStream(ingredientDataFile);
+            IOUtils.copy(file.getInputStream(), fos);
             return Files.readString(Path.of(dataFilePath, dataFileName));
         } catch (IOException e) {
             e.printStackTrace();

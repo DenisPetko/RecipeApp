@@ -102,10 +102,8 @@ public class FileController {
             )
     })
     public ResponseEntity<Void> uploadFileRecipes(@RequestParam MultipartFile file) {
-        recipeFileService.cleanDataFile();
-        File recipeDataFile = recipeFileService.getDataFile();
-        try (FileOutputStream fos = new FileOutputStream(recipeDataFile)) {
-            IOUtils.copy(file.getInputStream(), fos);
+        try {
+            recipeFileService.readFromFile();
             return ResponseEntity.ok().build();
         } catch (IOException e) {
             e.printStackTrace();
