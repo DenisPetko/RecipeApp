@@ -17,8 +17,6 @@ import java.nio.file.Path;
 @RequiredArgsConstructor
 public class IngredientFileServiceImpl implements IngredientFileService {
 
-    private final IngredientFileService ingredientFileService;
-
     @Value("${path.to.data.file}")
     private String dataFilePath;
 
@@ -39,7 +37,7 @@ public class IngredientFileServiceImpl implements IngredientFileService {
     @Override
     public String readFromFile(MultipartFile file) {
         cleanDataFile();
-        File ingredientDataFile = ingredientFileService.getDataFile();
+        File ingredientDataFile = getDataFile();
         try {
             FileOutputStream fos = new FileOutputStream(ingredientDataFile);
             IOUtils.copy(file.getInputStream(), fos);

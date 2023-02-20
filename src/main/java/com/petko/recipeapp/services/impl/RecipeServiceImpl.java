@@ -4,12 +4,12 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.petko.recipeapp.exception.ValidationException;
+import com.petko.recipeapp.model.Ingredients;
 import com.petko.recipeapp.model.Recipe;
 import com.petko.recipeapp.services.RecipeFileService;
 import com.petko.recipeapp.services.RecipeService;
 import com.petko.recipeapp.services.ValidationService;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.PostConstruct;
 import java.io.IOException;
@@ -28,11 +28,12 @@ public class RecipeServiceImpl implements RecipeService {
     private static long recipeID = 0;
     private Map<Long, Recipe> recipeMap = new HashMap<>();
     private final ValidationService validationService;
-    private ObjectMapper objectMapper;
+    private final ObjectMapper objectMapper;
 
-    public RecipeServiceImpl(RecipeFileService recipeFileService, ValidationService validationService) {
+    public RecipeServiceImpl(RecipeFileService recipeFileService, ValidationService validationService, ObjectMapper objectMapper) {
         this.recipeFileService = recipeFileService;
         this.validationService = validationService;
+        this.objectMapper = objectMapper;
     }
 
     @PostConstruct
@@ -80,13 +81,21 @@ public class RecipeServiceImpl implements RecipeService {
     @Override
     public Path createRecipeFile() throws IOException {
         Path path = recipeFileService.createTempRecipeFile("recipeFile");
-            try (Writer writer = Files.newBufferedWriter(path, StandardOpenOption.APPEND)) {
-                for (Recipe recipe : recipeMap.values()){
+        try (Writer writer = Files.newBufferedWriter(path, StandardOpenOption.APPEND)) {
+            for (Recipe recipe : recipeMap.values()) {
 
                 writer.append(recipe.getTitle()).append("\n")
                         .append("Время приготовления: ").append(String.valueOf(recipe.getCookingTime())).append("\n")
-                        .append("Ингредиенты: ").append("\n").append(recipe.getIngredients().toString()).append("\n")
-                        .append("Инструкция приготовления: ").append(recipe.getStepsCooking().toString());
+                        .append("Ингредиенты: ").append("\n");
+
+                for (Ingredients ingredients : recipe.getIngredients()) {
+                    writer.append("•").append(ingredients.toString()).append("\n");
+                }
+                writer.append("Инструкция приготовления: ").append("\n");
+
+                for (String steps : recipe.getStepsCooking()) {
+                    writer.append("➣").append(steps).append("\n");
+                }
             }
         }
         return path;

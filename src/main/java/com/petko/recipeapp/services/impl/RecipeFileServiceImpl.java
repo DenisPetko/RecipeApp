@@ -17,8 +17,6 @@ import java.nio.file.Path;
 @RequiredArgsConstructor
 public class RecipeFileServiceImpl implements RecipeFileService {
 
-    private final RecipeFileService recipeFileService;
-
     @Value("${path.to.data.file}")
     private String dataFilePath;
 
@@ -48,7 +46,7 @@ public class RecipeFileServiceImpl implements RecipeFileService {
     @Override
     public String readFromFile(MultipartFile file) {
         cleanDataFile();
-        File recipeDataFile = recipeFileService.getDataFile();
+        File recipeDataFile = getDataFile();
         try {
             FileOutputStream fos = new FileOutputStream(recipeDataFile);
             IOUtils.copy(file.getInputStream(), fos);
