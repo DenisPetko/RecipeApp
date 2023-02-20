@@ -10,6 +10,8 @@ public interface IngredientFileService {
 
     String readFromFile(MultipartFile file);
 
+    String readFromFile();
+
     File getDataFile();
 
     boolean cleanDataFile();

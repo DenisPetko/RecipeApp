@@ -38,11 +38,20 @@ public class IngredientFileServiceImpl implements IngredientFileService {
 
     @Override
     public String readFromFile(MultipartFile file) {
-        ingredientFileService.cleanDataFile();
+        cleanDataFile();
         File ingredientDataFile = ingredientFileService.getDataFile();
         try {
             FileOutputStream fos = new FileOutputStream(ingredientDataFile);
             IOUtils.copy(file.getInputStream(), fos);
+            return Files.readString(Path.of(dataFilePath, dataFileName));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    public String readFromFile() {
+        try {
             return Files.readString(Path.of(dataFilePath, dataFileName));
         } catch (IOException e) {
             e.printStackTrace();

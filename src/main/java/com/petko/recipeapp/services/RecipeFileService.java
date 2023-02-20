@@ -15,6 +15,8 @@ public interface RecipeFileService {
 
     String readFromFile(MultipartFile file);
 
+    String readFromFile();
+
     File getDataFile();
 
     boolean cleanDataFile();

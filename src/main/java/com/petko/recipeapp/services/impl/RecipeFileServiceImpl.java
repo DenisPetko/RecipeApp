@@ -47,11 +47,21 @@ public class RecipeFileServiceImpl implements RecipeFileService {
 
     @Override
     public String readFromFile(MultipartFile file) {
-        recipeFileService.cleanDataFile();
+        cleanDataFile();
         File recipeDataFile = recipeFileService.getDataFile();
         try {
             FileOutputStream fos = new FileOutputStream(recipeDataFile);
             IOUtils.copy(file.getInputStream(), fos);
+            return Files.readString(Path.of(dataFilePath, dataFileName));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public String readFromFile() {
+        try {
             return Files.readString(Path.of(dataFilePath, dataFileName));
         } catch (IOException e) {
             e.printStackTrace();

@@ -1,7 +1,5 @@
 package com.petko.recipeapp.services.impl;
-
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.petko.recipeapp.exception.ValidationException;
 import com.petko.recipeapp.model.Ingredients;
@@ -9,8 +7,6 @@ import com.petko.recipeapp.services.IngredientFileService;
 import com.petko.recipeapp.services.IngredientsService;
 import com.petko.recipeapp.services.ValidationService;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
-
 import javax.annotation.PostConstruct;
 import java.util.HashMap;
 import java.util.Map;
@@ -32,7 +28,7 @@ public class IngredientsServiceImpl implements IngredientsService {
 
     @PostConstruct
     private void init() {
-        readFromFile();
+        ingredientFileService.readFromFile();
     }
 
     @Override
@@ -72,6 +68,7 @@ public class IngredientsServiceImpl implements IngredientsService {
         return ingredientsMap;
     }
 
+
     private void saveToFile() {
         try {
             String json = objectMapper.writeValueAsString(ingredientsMap);
@@ -81,14 +78,5 @@ public class IngredientsServiceImpl implements IngredientsService {
         }
     }
 
-    private void readFromFile(MultipartFile file) {
-        try {
-            String json = ingredientFileService.readFromFile(file);
-            ingredientsMap = objectMapper.readValue(json, new TypeReference<HashMap<Long, Ingredients>>() {
-            });
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-    }
 
 }

@@ -101,9 +101,9 @@ public class RecipeServiceImpl implements RecipeService {
         }
     }
 
-    private void readFromFile(MultipartFile file) {
+    private void readFromFile() {
         try {
-            String json = recipeFileService.readFromFile(file);
+            String json = recipeFileService.readFromFile();
             recipeMap = objectMapper.readValue(json, new TypeReference<HashMap<Long, Recipe>>() {
             });
         } catch (JsonProcessingException e) {
