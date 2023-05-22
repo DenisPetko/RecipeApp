@@ -1,0 +1,44 @@
+{
+  "0": {
+    "title": "Сырники",
+    "cookingTime": 1,
+    "ingredients": [
+      {
+        "name": "творог",
+        "numberOfIngredients": 1,
+        "unitOfMeasurement": "кг"
+      }
+    ],
+    "stepsCooking": [
+      "пожарить"
+    ]
+  },
+  "1": {
+    "title": "Овсянка",
+    "cookingTime": 1,
+    "ingredients": [
+      {
+        "name": "Овсяные хлопья",
+        "numberOfIngredients": 1,
+        "unitOfMeasurement": "кг"
+      }
+    ],
+    "stepsCooking": [
+      "варить"
+    ]
+  },
+  "2": {
+    "title": "Картошка жареная",
+    "cookingTime": 1,
+    "ingredients": [
+      {
+        "name": "картошка",
+        "numberOfIngredients": 1,
+        "unitOfMeasurement": "кг"
+      }
+    ],
+    "stepsCooking": [
+      "жарить"
+    ]
+  }
+}

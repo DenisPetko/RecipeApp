@@ -1,0 +1,17 @@
+{
+  "0": {
+    "name": "Овсяные хлопья",
+    "numberOfIngredients": 1,
+    "unitOfMeasurement": "кг"
+  },
+  "1": {
+    "name": "картощка",
+    "numberOfIngredients": 1,
+    "unitOfMeasurement": "кг"
+  },
+  "2": {
+    "name": "творог",
+    "numberOfIngredients": 1,
+    "unitOfMeasurement": "кг"
+  }
+}
