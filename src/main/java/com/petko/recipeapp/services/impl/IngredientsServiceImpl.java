@@ -31,7 +31,7 @@ public class IngredientsServiceImpl implements IngredientsService {
 
     @PostConstruct
     private void init() {
-        readFromFile();
+        ingredientFileService.readFromFile();
     }
 
     @Override
