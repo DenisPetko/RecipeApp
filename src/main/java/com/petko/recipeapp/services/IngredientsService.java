@@ -1,11 +1,16 @@
 package com.petko.recipeapp.services;
 
 import com.petko.recipeapp.model.Ingredients;
-import com.petko.recipeapp.model.Recipe;
+
+import java.util.Optional;
+
+/**
+ * Сервис по работе с ингредиентами
+ */
 
 public interface IngredientsService {
 
-    void addIngredient(Ingredients ingredients);
+    Ingredients addIngredient(Ingredients ingredients);
 
-    Ingredients getIngredient(int recipeID);
+    Optional<Ingredients> getIngredientByID(Long id);
 }
