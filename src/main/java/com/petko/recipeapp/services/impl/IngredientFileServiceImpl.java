@@ -16,7 +16,7 @@ public class IngredientFileServiceImpl implements IngredientFileService {
 
     @Value("${name.ingredient.of.data.file}")
     private String dataFileName;
-
+    
     @Override
     public boolean saveToFile(String json) {
         try {
