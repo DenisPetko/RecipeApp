@@ -79,16 +79,4 @@ public class IngredientsServiceImpl implements IngredientsService {
             e.printStackTrace();
         }
     }
-
-    private void readFromFile() {
-        try {
-            String json = ingredientFileService.readFromFile();
-            ingredientsMap = objectMapper.readValue(json, new TypeReference<HashMap<Long, Ingredients>>() {
-            });
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-    }
-
-
 }
