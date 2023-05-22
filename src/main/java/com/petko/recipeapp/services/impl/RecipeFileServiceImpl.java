@@ -4,6 +4,7 @@ import com.petko.recipeapp.services.RecipeFileService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -38,7 +39,12 @@ public class RecipeFileServiceImpl implements RecipeFileService {
         return null;
     }
 
-    private boolean cleanDataFile() {
+    @Override
+    public File getDataFile() {
+        return new File(dataFilePath + "/" + dataFileName);
+    }
+
+    public boolean cleanDataFile() {
         try {
             Path path = Path.of(dataFilePath, dataFileName);
             Files.deleteIfExists(path);
