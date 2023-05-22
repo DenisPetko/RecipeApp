@@ -26,7 +26,8 @@ public class RecipeServiceImpl implements RecipeService {
         if (!validationService.validate(recipe)) {
             throw new ValidationException(recipe.toString());
         }
-        return recipeMap.put(recipeID++, recipe);
+        recipeMap.put(recipeID++, recipe);
+        return recipe;
     }
 
     @Override
