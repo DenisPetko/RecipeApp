@@ -2,6 +2,7 @@ package com.petko.recipeapp.services;
 
 import com.petko.recipeapp.model.Recipe;
 
+import java.util.Map;
 import java.util.Optional;
 
 /**
@@ -13,4 +14,9 @@ public interface RecipeService {
 
     Optional<Recipe> getRecipeByID(Long id);
 
+    Recipe update(Long id, Recipe recipe);
+
+    Recipe delete(Long id);
+
+    Map<Long, Recipe> getAll();
 }
